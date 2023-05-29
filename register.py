@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import*
 from tkinter import ttk, Frame
 from PIL import Image,ImageTk
 from tkinter import messagebox
@@ -27,59 +27,61 @@ class Register:
         self.var_address = StringVar()
         self.var_teacher = StringVar()
 
-        img = Image.open(r"college_images\img21.jpeg")
-        img = img.resize((500,130),Image.ANTIALIAS)
-        self.photoimg = ImageTk.PhotoImage(img)
+        # img = Image.open(r"college_images\img21.jpeg")
+        # img = img.resize((500,130),Image.ANTIALIAS)
+        # self.photoimg = ImageTk.PhotoImage(img)
 
-        f_lbl = Label(self.root,image = self.photoimg)
-        f_lbl.place(x=0,y=0,width=500,height=130)
+        # f_lbl = Label(self.root,image = self.photoimg)
+        # f_lbl.place(x=0,y=0,width=500,height=130)
 
-        # second image
-        img1 = Image.open(r"college_images\img19.jpeg")
-        img1 = img1.resize((550,130),Image.ANTIALIAS)
-        self.photoimg1 = ImageTk.PhotoImage(img1)
+        # # second image
+        # img1 = Image.open(r"college_images\img19.jpeg")
+        # img1 = img1.resize((550,130),Image.ANTIALIAS)
+        # self.photoimg1 = ImageTk.PhotoImage(img1)
 
-        f_lbl = Label(self.root,image = self.photoimg1)
-        f_lbl.place(x=500,y=0,width=500,height=130)
+        # f_lbl = Label(self.root,image = self.photoimg1)
+        # f_lbl.place(x=500,y=0,width=500,height=130)
 
         # third image
-        img2 = Image.open(r"college_images\img20.jpeg")
-        img2 = img2.resize((550,130),Image.ANTIALIAS)
-        self.photoimg2 = ImageTk.PhotoImage(img2)
+        # img2 = Image.open(r"college_images\img20.jpeg")
+        # img2 = img2.resize((550,130),Image.ANTIALIAS)
+        # self.photoimg2 = ImageTk.PhotoImage(img2)
 
-        f_lbl = Label(self.root,image = self.photoimg2)
-        f_lbl.place(x=1000,y=0,width=550,height=130)
+        # f_lbl = Label(self.root,image = self.photoimg2)
+        # f_lbl.place(x=1000,y=0,width=550,height=130)
 
 
         #bg - image
         # fourth image
-        img4 = Image.open(r"college_images\img15.jpeg")
-        img4 = img4.resize((1530,45),Image.ANTIALIAS)
-        self.photoimg4 = ImageTk.PhotoImage(img4)
+        # img4 = Image.open(r"college_images\img15.jpeg") # type: ignore
+        # img4 = img4.resize((1530,45),Image.ANTIALIAS) # type: ignore
+        # self.photoimg4 = ImageTk.PhotoImage(img4)
 
-        bg_img = Label(self.root,image = self.photoimg4)
-        bg_img.place(x=0,y=130,width=1500,height=790)
+        # bg_img = Label(self.root,image = self.photoimg4)
+        # bg_img.place(x=0,y=130,width=1500,height=790)
 
-        title_lbl = Label(bg_img,text="REGISTER YOURSELF",font=("times new roman",35,"bold"),bg="white",fg="red")
-        title_lbl.place(x=0,y=0,width=1530,height=45)
+        title_lbl = Label(text="Student Registration",font=("times new roman",40,"bold"),bg="white",fg="Black")
+        title_lbl.place(x=0,y=0,width=1530,height=70)
+          
+       
 
-        main_frame=Frame(bg_img,bd=2,bg="white",)
-        main_frame.place(x=0,y=55,width=1500,height=600)
+        main_frame=Frame(bd=2,bg="#E3F4F4",)
+        main_frame.place(x=0,y=140,width=1500,height=900)
 
         # left label frame
-        Left_frame=LabelFrame(main_frame,bd=2,bg="white",relief=RIDGE,text="Enter your details",font=("times new roman",15,"bold"))
-        Left_frame.place(x=10,y=10,width=730,height=580)
+        Left_frame=LabelFrame(main_frame,bd=2,bg="white",relief=RIDGE,text="Enter your details",font=("times new roman",25,"bold"))
+        Left_frame.place(x=10,y=20,width=730,height=580)
 
-        img_left = Image.open(r"college_images\img7.jpeg")
-        img_left = img_left.resize((720,130),Image.ANTIALIAS)
-        self.photoimg_left = ImageTk.PhotoImage(img_left)
+        # img_left = Image.open(r"college_images\img7.jpeg")
+        # img_left = img_left.resize((720,130),Image.ANTIALIAS)
+        # self.photoimg_left = ImageTk.PhotoImage(img_left)
 
-        f_lbl = Label(Left_frame,image = self.photoimg_left)
-        f_lbl.place(x=5,y=0,width=720,height=130)
+        # f_lbl = Label(Left_frame,image = self.photoimg_left)
+        # f_lbl.place(x=5,y=0,width=720,height=130)
 
         # current course information
         current_course_frame=LabelFrame(Left_frame,bd=2,bg="white",relief=RIDGE,text="Current course information",font=("times new roman",15,"bold"))
-        current_course_frame.place(x=5,y=135,width=720,height=150)
+        current_course_frame.place(x=5,y=30,width=720,height=150)
 
         #Department
         dep_label = Label(current_course_frame,text="Department",font=("times new roman",15,"bold"),bg="white")
@@ -95,7 +97,7 @@ class Register:
         course_label.grid(row=0,column=2,padx=10,sticky=W)
 
         course_combo=ttk.Combobox(current_course_frame,textvariable=self.var_course,font=("times new roman",15,"bold"),state="readonly",width=20)
-        course_combo["values"]=("Select Course","FE","SE","TE","BE")
+        course_combo["values"]=("Select Course","AI","IOT","ML","SE")
         course_combo.current(0)
         course_combo.grid(row=0,column=3,padx=2,pady=10,sticky=W)
 
@@ -119,7 +121,7 @@ class Register:
 
         # class Student information
         class_Student_frame=LabelFrame(Left_frame,bd=2,bg="white",relief=RIDGE,text="Class student information",font=("times new roman",15,"bold"))
-        class_Student_frame.place(x=5,y=250,width=720,height=300)
+        class_Student_frame.place(x=5,y=200,width=720,height=380)
 
         # student id
         studentId_label = Label(class_Student_frame,text="StudentID:",font=("times new roman",15,"bold"),bg="white")
@@ -138,7 +140,6 @@ class Register:
         # class division
         class_div_label = Label(class_Student_frame,text="Class Division:",font=("times new roman",15,"bold"),bg="white")
         class_div_label.grid(row=1,column=0,padx=10,pady=5,sticky=W)
-
         # class_div_entry=ttk.Entry(class_Student_frame,textvariable=self.var_div,width=20,font=("times new roman",15,"bold"))
         # class_div_entry.grid(row=1,column=1,padx=10,pady=5,sticky=W)
 
@@ -212,63 +213,62 @@ class Register:
 
         # buttons frame
         btn_frame = Frame(class_Student_frame,bd=2,relief=RIDGE,bg="white")
-        btn_frame.place(x=0,y=200,width=715,height=70)
+        btn_frame.place(x=0,y=230,width=715,height=70)
 
-        save_btn=Button(btn_frame,text="Save",command=self.add_data,width=15,font=("times new roman",15,"bold"),bg="blue",fg="white")
+        save_btn=Button(btn_frame,text="Save",command=self.add_data,width=15,font=("times new roman",15,"bold"),bg="dark blue",fg="white")
         save_btn.grid(row=0,column=0)
 
-        update_btn=Button(btn_frame,text="Update",command=self.update_data,width=15,font=("times new roman",15,"bold"),bg="blue",fg="white")
+        update_btn=Button(btn_frame,text="Update",command=self.update_data,width=15,font=("times new roman",15,"bold"),bg="dark blue",fg="white")
         update_btn.grid(row=0,column=1)
 
-        delete_btn=Button(btn_frame,text="Delete",command=self.delete_data,width=15,font=("times new roman",15,"bold"),bg="blue",fg="white")
+        delete_btn=Button(btn_frame,text="Delete",command=self.delete_data,width=15,font=("times new roman",15,"bold"),bg="dark blue",fg="white")
         delete_btn.grid(row=0,column=2)
 
-        reset_btn=Button(btn_frame,text="Reset",command=self.reset_data,width=15,font=("times new roman",15,"bold"),bg="blue",fg="white")
+        reset_btn=Button(btn_frame,text="Reset",command=self.reset_data,width=15,font=("times new roman",15,"bold"),bg="dark blue",fg="white")
         reset_btn.grid(row=0,column=3)
 
         btn_frame1 = Frame(class_Student_frame,bd=2,relief=RIDGE,bg="white")
-        btn_frame1.place(x=0,y=235,width=715,height=35)
+        btn_frame1.place(x=150,y=270,width=715,height=30)
 
-        take_photo_btn = Button(btn_frame1,text="Take Photo Sample",command=self.generate_dataset,width=30,font=("times new roman",15,"bold"),bg="blue",fg="white")
-        take_photo_btn.grid(row=0,column=1)
+        take_photo_btn = Button(btn_frame1,text="Take Photo Sample",command=self.generate_dataset,width=30,font=("times new roman",15,"bold"),bg="dark blue",fg="white")
+        take_photo_btn.grid(row=0,column=2)
 
-        update_photo_btn = Button(btn_frame1,text="Update Photo Sample",width=30,font=("times new roman",15,"bold"),bg="blue",fg="white")
-        update_photo_btn.grid(row=0,column=2)
+
 
 
 
         # ********Right label frame*********
         Right_frame=LabelFrame(main_frame,bd=2,bg="white",relief=RIDGE,text="Student details",font=("times new roman",15,"bold"))
-        Right_frame.place(x=780,y=10,width=720,height=580)
+        Right_frame.place(x=780,y=20,width=700,height=580)
 
-        img_right = Image.open(r"college_images\img24.jpeg")
-        img_right = img_right.resize((720,130),Image.ANTIALIAS)
+        img_right = Image.open(r"college_images\s2.jpeg")# type: ignore
+        img_right = img_right.resize((700,180),Image.ANTIALIAS)# type: ignore
         self.photoimg_right = ImageTk.PhotoImage(img_right)
 
         f_lbl = Label(Right_frame,image = self.photoimg_right)
-        f_lbl.place(x=5,y=0,width=720,height=130)
+        f_lbl.place(x=5,y=0,width=685,height=190)
 
 
         # ********Search System********
-        Search_frame=LabelFrame(Right_frame,bd=2,bg="white",relief=RIDGE,text="Search System",font=("times new roman",15,"bold"))
-        Search_frame.place(x=5,y=135,width=710,height=70)
+        # Search_frame=LabelFrame(Right_frame,bd=2,bg="white",relief=RIDGE,text="Search System",font=("times new roman",15,"bold"))
+        # Search_frame.place(x=5,y=30,width=710,height=70)
 
-        search_label = Label(Search_frame,text="Search by:",font=("times new roman",15,"bold"),bg="blue",fg="white")
-        search_label.grid(row=0,column=0,padx=10,pady=5,sticky=W)
+        # search_label = Label(Search_frame,text="Search by:",font=("times new roman",15,"bold"),bg="grey",fg="white")
+        # search_label.grid(row=0,column=0,padx=10,pady=5,sticky=W)
 
-        search_combo=ttk.Combobox(Search_frame,font=("times new roman",15,"bold"),state="readonly",width=15)
-        search_combo["values"]=("Select Search By","Roll_No","Student_ID","Phone_No")
-        search_combo.current(0)
-        search_combo.grid(row=0,column=1,padx=2,pady=10,sticky=W)
+        # search_combo=ttk.Combobox(Search_frame,font=("times new roman",15,"bold"),state="readonly",width=15)
+        # search_combo["values"]=("Select Search By","Roll_No","Student_ID","Phone_No")
+        # search_combo.current(0)
+        # search_combo.grid(row=0,column=1,padx=2,pady=10,sticky=W)
 
-        search_entry=ttk.Entry(Search_frame,width=20,font=("times new roman",15,"bold"))
-        search_entry.grid(row=0,column=2,padx=10,pady=5,sticky=W)
+        # search_entry=ttk.Entry(Search_frame,width=20,font=("times new roman",15,"bold"))
+        # search_entry.grid(row=0,column=2,padx=10,pady=5,sticky=W)
 
-        search_photo_btn=Button(Search_frame,text="Search",width=14,font=("times new roman",15,"bold"),bg="blue",fg="white")
-        search_photo_btn.grid(row=0,column=3,padx=4)
+        # search_photo_btn=Button(Search_frame,text="Search",width=14,font=("times new roman",15,"bold"),bg="grey",fg="white")
+        # search_photo_btn.grid(row=0,column=3,padx=4)
 
-        showAll_btn=Button(Search_frame,text="Show All",width=14,font=("times new roman",15,"bold"),bg="blue",fg="white")
-        showAll_btn.grid(row=0,column=4)
+        # showAll_btn=Button(Search_frame,text="Show All",width=14,font=("times new roman",15,"bold"),bg="blue",fg="white")
+        # showAll_btn.grid(row=0,column=4)
 
         # ***********table frame*********
         table_frame=Frame(Right_frame,bd=2,bg="white",relief=RIDGE)
@@ -277,7 +277,7 @@ class Register:
         scroll_x=ttk.Scrollbar(table_frame,orient=HORIZONTAL)
         scroll_y=ttk.Scrollbar(table_frame,orient=VERTICAL)
 
-        self.student_table = ttk.Treeview(table_frame,column=("department","course","year","sem","id","name","div","roll_no","gender","dob","email","phone","address","teacher","photo"),xscrollcommand=scroll_x.set,yscrollcommand=scroll_y.set)
+        self.student_table = ttk.Treeview(table_frame,columns=("department","course","year","sem","id","name","div","roll_no","gender","dob","email","phone","address","teacher","photo"),xscrollcommand=scroll_x.set,yscrollcommand=scroll_y.set)
         scroll_x.pack(side=BOTTOM,fill=X)
         scroll_y.pack(side=RIGHT,fill=Y)
         scroll_x.config(command=self.student_table.xview)
@@ -318,7 +318,7 @@ class Register:
         self.student_table.column("photo",width=100)
 
         self.student_table.pack(fill=BOTH,expand=1)
-        self.student_table.bind("<ButtonRelease>",self.get_cursor)
+        self.student_table.bind("<ButtonRelease>",self.get_cursor) # type: ignore
         self.fetch_data()
 
         # *******************function declaration**************
@@ -400,7 +400,7 @@ class Register:
                     conn=mysql.connector.connect(host="localhost",user="root",password="8302123277",database="face_recognizer")
                     my_cursor= conn.cursor()
                     my_cursor.execute("update student set Dep=%s,course=%s,year=%s,semester=%s,name=%s,division=%s,roll=%s,gender=%s,dob=%s,email=%s,phone=%s,address=%s,teacher=%s,PhotoSample=%s where id=%s",(
-                        self.var_dep.get(),
+                    self.var_dep.get(),
                     self.var_course.get(),
                     self.var_year.get(),
                     self.var_semester.get(),
@@ -421,9 +421,9 @@ class Register:
                         return
 
                 messagebox.showinfo("Success","Student details successfully updated",parent=self.root)
-                conn.commit()
+                conn.commit() # type: ignore
                 self.fetch_data()
-                conn.close() 
+                conn.close() # type: ignore
             except Exception as es:
                 messagebox.showerror("Error",f"Due To:{str(es)}",parent=self.root)     
         
@@ -443,9 +443,9 @@ class Register:
                 else:
                     if not delete:
                         return
-                conn.commit()
+                conn.commit() # type: ignore
                 self.fetch_data()
-                conn.close()
+                conn.close() # type: ignore
                 messagebox.showinfo("Delete","Successfully deleted student details",parent=self.root)
             except Exception as es:
                 messagebox.showerror("Error",f"Due To:{str(es)}",parent=self.root)     
@@ -482,7 +482,7 @@ class Register:
                 for x in myresult:
                     id+=1
                 my_cursor.execute("update student set Dep=%s,course=%s,year=%s,semester=%s,name=%s,division=%s,roll=%s,gender=%s,dob=%s,email=%s,phone=%s,address=%s,teacher=%s,PhotoSample=%s where id=%s",(
-                        self.var_dep.get(),
+                    self.var_dep.get(),
                     self.var_course.get(),
                     self.var_year.get(),
                     self.var_semester.get(),
@@ -521,14 +521,14 @@ class Register:
                     ret , my_frame = cap.read()
                     if face_cropped(my_frame) is not None:
                         img_id+=1
-                        face = cv2.resize(face_cropped(my_frame),(450,450))
+                        face = cv2.resize(face_cropped(my_frame),(450,450)) # type: ignore
                         face = cv2.cvtColor(face,cv2.COLOR_BGR2GRAY)
                         file_name_path = "data/user."+str(id)+"."+str(img_id)+".jpg"
                         cv2.imwrite(file_name_path,face)
                         cv2.putText(face,str(img_id),(50,50),cv2.FONT_HERSHEY_COMPLEX,2,(0,255,0),2)
                         cv2.imshow("Cropped Face",face)
 
-                    if cv2.waitKey(1)==13 or int(img_id)==50:
+                    if cv2.waitKey(1)==13 or int(img_id)==100:
                         break
                 
                 cap.release()
