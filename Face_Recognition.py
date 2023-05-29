@@ -11,7 +11,6 @@ from datetime import datetime
 from train import Train
 
 
-
 class Face_Recognition:
     def __init__(self, root):
         self.root = root
