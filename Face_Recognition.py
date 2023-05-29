@@ -8,7 +8,7 @@ import os
 import numpy as np
 from time import strftime
 from datetime import datetime
-
+from train import Train
 
 
 
@@ -18,36 +18,60 @@ class Face_Recognition:
         self.root.geometry("1530x790+0+0")
         self.root.title("Face Recognition System")
 
-        title_lbl = Label(self.root, text="FACE RECOGNITION", font=("times new roman", 35, "bold"), bg="white",
-                          fg="green")
-        title_lbl.place(x=0, y=0, width=1530, height=45)
+        title_lbl = Label(self.root, text="FACE RECOGNITION", font=("times new roman", 45, "bold"), bg="white",
+                          fg="dark blue")
+        title_lbl.place(x=0, y=0, width=1530, height=75)
+        
+        # img_top = Image.open(r"college_images\image1.jpg.png")  # Insert Image inside ""
+        # img_top = img_top.resize((1500, 1000), Image.ANTIALIAS)
+        # self.photoimg_top = ImageTk.PhotoImage(img_top)
 
+        # f_lbl = Label(self.root, image=self.photoimg_top)
+        # f_lbl.place(x=0, y=180, width=1500, height=500)
 
         #first image
-        img_top = Image.open(r"college_images\img3.jpeg")  # Insert Image inside ""
-        img_top = img_top.resize((650, 700), Image.ANTIALIAS)
+        img_top = Image.open(r"college_images\image1.jpg.png")  # type: ignore # Insert Image inside ""
+        img_top = img_top.resize((1060, 720), Image.ANTIALIAS) # type: ignore
         self.photoimg_top = ImageTk.PhotoImage(img_top)
 
         f_lbl = Label(self.root, image=self.photoimg_top)
-        f_lbl.place(x=0, y=55, width=650, height=700)
+        f_lbl.place(x=0, y=75, width=1060, height=700)
 
         # 2nd image
-        img_bottom = Image.open(r"college_images\img4.jpeg")  # Insert Image inside ""
-        img_bottom = img_bottom.resize((950, 700), Image.ANTIALIAS)
-        self.photoimg_bottom = ImageTk.PhotoImage(img_bottom)
+        # img_bottom = Image.open(r"college_images\download.png")  # Insert Image inside ""
+        # img_bottom = img_bottom.resize((500, 700), Image.ANTIALIAS)
+        # self.photoimg_bottom = ImageTk.PhotoImage(img_bottom)
 
-        f_lbl = Label(self.root, image=self.photoimg_bottom)
-        f_lbl.place(x=650, y=55, width=950, height=700)
+        # f_lbl = Label(self.root, image=self.photoimg_bottom)
+        # f_lbl.place(x=500, y=75, width=550, height=700)
 
         # button
-        b1_1 = Button(f_lbl, text="Face Recognition",command=self.face_recog, cursor="hand2", font=("times new roman", 18, "bold"),
-                      bg="darkgreen",
+        b1_1 = Button( self.root,text="Face Recognition",command=self.face_recog, cursor="hand2", font=("times new roman", 18, "bold"),
+                      bg="brown",
                       fg="white")
-        b1_1.place(x=0, y=200, width=300, height=40)
+        b1_1.place(x=1150, y=300, width=300, height=60)
+        
+
+        b1_2 = Button( self.root,text="Train Face",command=self.train_data, cursor="hand2", font=("times new roman", 18, "bold"),
+                      bg="brown",
+                      fg="white")
+        b1_2.place(x=1150, y=500, width=300, height=60)
+
+    def train_data(self):
+        self.new_window=Toplevel(self.root)
+        self.app=Train(self.new_window)
+        
+        img9 = Image.open(r"college_images\img6.jpeg") # type: ignore
+        img9 = img9.resize((220,180),Image.ANTIALIAS) # type: ignore
+        self.photoimg9 = ImageTk.PhotoImage(img9)
+
+        
+
+        # main_frame.place(x=0,y=140,width=300,height=900)
 
     #==================== attendace mark =====================
     def mark_attendance(self, i, r, n, d):
-        with open("student_details.csv", "r+", newline="\n") as f:
+        with open("Attendance.csv", "r+", newline="\n") as f:
             myDataList = f.readlines()
             name_list = []
             for line in myDataList:
@@ -83,23 +107,23 @@ class Face_Recognition:
                                                database="face_recognizer")
                 my_cursor = conn.cursor()
 
-                my_cursor.execute("select Name from student where Student_id=" + str(id))
+                my_cursor.execute("select Name from student where id=" + str(id))
                 n = my_cursor.fetchone()
-                n = '+'.join(n)
+                n = '+'.join(n) # type: ignore
 
-                my_cursor.execute("select Roll from student where Student_id=" + str(id))
+                my_cursor.execute("select Roll from student where id=" + str(id))
                 r = my_cursor.fetchone()
-                r = '+'.join(r)
+                r = '+'.join(r) # type: ignore
 
-                my_cursor.execute("select Dep from student where Student_id=" + str(id))
+                my_cursor.execute("select Dep from student where id=" + str(id))
                 d = my_cursor.fetchone()
-                d = '+'.join(d)
+                d = '+'.join(d) # type: ignore
 
-                my_cursor.execute("select Student_id from student where Student_id=" + str(id))
+                my_cursor.execute("select id from student where id=" + str(id))
                 i = my_cursor.fetchone()
-                i = '+'.join(i)
+                i = '+'.join(i) # type: ignore
                 
-                if confidence > 77:
+                if confidence > 40:
                     cv2.putText(img, f"ID:{i}", (x, y - 75), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255, 255, 255), 3)
                     cv2.putText(img, f"Roll:{r}", (x, y - 55), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255, 255, 255), 3)
                     cv2.putText(img, f"Name:{n}", (x, y - 30), cv2.FONT_HERSHEY_COMPLEX, 0.8, (255, 255, 255), 3)
